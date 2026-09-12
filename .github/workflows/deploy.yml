@@ -36,5 +36,5 @@ jobs:
         run: |
           sleep 2
           curl -sf -X POST http://31.77.149.158/api/visit > /dev/null
-          curl -sf http://31.77.149.158/ | grep -q marselevichk
+          curl -sf http://31.77.149.158/ | grep -q "КОНСТАНТИН"
           echo "deploy ok"
