@@ -1,0 +1,1214 @@
+/* ============================================================
+   styles.css — готическая эстетика веба 2001–2005 годов.
+   Чёрный бархат, кровь, черепа и ridge-бордеры до гроба.
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 14px;
+  color: #c0c0c0;
+  background-color: #07020a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%2307020a'/%3E%3Cpath d='M30 22 h6 v10 h10 v6 h-10 v26 h-6 v-26 h-10 v-6 h10 z' fill='%23180a1c'/%3E%3Cpath d='M92 88 h5 v8 h8 v5 h-8 v19 h-5 v-19 h-8 v-5 h8 z' fill='%231c0616'/%3E%3Cpath d='M14 84 q5 -7 10 0 q5 -7 10 0 q-5 5 -10 2.5 q-5 2.5 -10 -2.5' fill='%231a0a14'/%3E%3Ccircle cx='100' cy='28' r='1.2' fill='%23550033'/%3E%3Ccircle cx='60' cy='60' r='1' fill='%232a0a2a'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M2 2 L2 18 L7 13 L10 20 L13 18 L10 12 L17 12 Z' fill='%23cc2222' stroke='%23000000' stroke-width='1.5'/%3E%3C/svg%3E")
+    2 2,
+    auto;
+}
+
+/* ---------- Готические кресты на заднем плане ---------- */
+
+.cross-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cross-item {
+  position: absolute;
+  animation: cross-glow 4s ease-in-out infinite;
+}
+
+@keyframes cross-glow {
+  0%,
+  100% {
+    opacity: 0.16;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+a {
+  color: #cc6666;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #993399;
+}
+
+a:hover {
+  color: #000000;
+  background: #cc2222;
+}
+
+/* ---------- Центральная «таблица» сайта ---------- */
+
+.page-wrap {
+  width: 860px;
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 10px 0 40px;
+  position: relative;
+}
+
+.main-table {
+  border: 4px ridge #4a1a4a;
+  background: #0d0210;
+  box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- WordArt заголовок (кровавый) ---------- */
+
+.wordart {
+  font-family: 'Germania One', Impact, 'Arial Black', sans-serif;
+  font-size: 44px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 18px 10px 4px;
+  background: linear-gradient(180deg, #ff2222, #8b0000 55%, #2b0000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 2px #000000;
+  paint-order: stroke fill;
+  text-shadow: 0 0 18px rgba(255, 0, 0, 0.65);
+  position: relative;
+  animation: blood-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes blood-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(139, 0, 0, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(255, 0, 0, 0.8));
+  }
+}
+
+/* Капающая кровь под заголовком */
+.drips {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  height: 26px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.drip {
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, #8b0000, #ff2222);
+  border-radius: 0 0 3px 3px;
+  animation: drip-fall 2.8s ease-in infinite;
+}
+
+.drip:nth-child(2) {
+  animation-delay: 0.7s;
+  height: 24px;
+}
+.drip:nth-child(3) {
+  animation-delay: 1.4s;
+  height: 14px;
+}
+.drip:nth-child(4) {
+  animation-delay: 2s;
+  height: 22px;
+}
+.drip:nth-child(5) {
+  animation-delay: 0.35s;
+}
+
+@keyframes drip-fall {
+  0% {
+    transform: translateY(-20px) scaleY(0.4);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(6px) scaleY(0.2);
+    opacity: 0;
+  }
+}
+
+/* ---------- Мигание ---------- */
+
+.blink {
+  animation: blink-anim 1s steps(1) infinite;
+}
+
+@keyframes blink-anim {
+  50% {
+    visibility: hidden;
+  }
+}
+
+/* Мерцающий свет свечи */
+.flicker {
+  animation: candle-flicker 1.6s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes candle-flicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 0.65;
+    transform: scale(0.92) rotate(-4deg);
+  }
+  60% {
+    opacity: 0.9;
+    transform: scale(1.05) rotate(3deg);
+  }
+}
+
+/* ---------- Окна в стиле Windows 98 (готическая тема) ---------- */
+
+.win {
+  border: 2px outset #552244;
+  background: #1a0512;
+  color: #c0c0c0;
+  margin: 12px 0;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+.win-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1a0000, #7a0f0f, #1a0000);
+  color: #ffdddd;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 3px 4px 3px 6px;
+  user-select: none;
+}
+
+.win-titlebar .win-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.win-titlebar .win-btn {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1;
+  width: 18px;
+  height: 16px;
+  border: 2px outset #552244;
+  background: #1a0512;
+  color: #cc2222;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.win-titlebar .win-btn:active {
+  border-style: inset;
+}
+
+.win-body {
+  padding: 10px;
+}
+
+/* ---------- Врезка-новость ---------- */
+
+.bevel-box {
+  border: 3px inset #4a1a4a;
+  background: #14031a;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.bevel-box h3 {
+  margin: 0 0 8px;
+  color: #cc2222;
+  font-family: 'Germania One', Impact, sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 #000000;
+}
+
+/* ---------- Счётчик посещений ---------- */
+
+.hit-counter {
+  display: inline-flex;
+  gap: 2px;
+  background: #000000;
+  border: 3px inset #4a1a4a;
+  padding: 3px;
+}
+
+.hit-counter .digit {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ff2222;
+  background: #0d0000;
+  width: 20px;
+  text-align: center;
+  border: 1px solid #4a0000;
+  text-shadow: 0 0 6px #ff0000;
+}
+
+/* ---------- Кнопки 88x31 ---------- */
+
+.btn88 {
+  display: inline-block;
+  width: 88px;
+  height: 31px;
+  line-height: 31px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: bold;
+  font-family: Verdana, sans-serif;
+  color: #cccccc;
+  border: 1px solid #777777;
+  text-decoration: none;
+  overflow: hidden;
+  text-shadow: 1px 1px 0 #000000;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn88:hover {
+  filter: brightness(1.4);
+  color: #ffffff;
+}
+
+.btn88-navy {
+  background: repeating-linear-gradient(45deg, #1a0a2a 0 6px, #3a1a4a 6px 12px);
+  color: #cc99ff;
+}
+
+.btn88-matrix {
+  background: repeating-linear-gradient(90deg, #0d1a0d 0 4px, #1a331a 4px 8px);
+  color: #66ff66;
+  text-shadow: none;
+}
+
+.btn88-hot {
+  background: linear-gradient(#4a0000, #1a0000);
+  color: #ff6666;
+  border-color: #8b0000;
+}
+
+.btn88-IE {
+  background: linear-gradient(#2a0a2a, #0d0514);
+  color: #ff99cc;
+}
+
+/* ---------- Навигация (левый «фрейм») ---------- */
+
+.sidebar {
+  width: 180px;
+  vertical-align: top;
+  background: #0d0114;
+  border-right: 3px ridge #4a1a4a;
+  padding: 10px 8px;
+}
+
+.sidebar h4 {
+  color: #cc2222;
+  margin: 8px 0 4px;
+  font-size: 13px;
+  text-align: center;
+  font-family: 'Germania One', Impact, sans-serif;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  display: block;
+  margin: 4px 0;
+  padding: 4px 6px;
+  color: #ff9999 !important;
+  background: #1a0512;
+  border: 2px outset #552244;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
+}
+
+.nav-link:visited {
+  color: #ff9999;
+}
+
+.nav-link:hover {
+  background: #3a0a0a;
+  color: #ffffff !important;
+  border-style: inset;
+}
+
+.nav-link.active {
+  background: #660000;
+  border-style: inset;
+  color: #ffffff !important;
+}
+
+/* ---------- Layout ---------- */
+
+.content-cell {
+  vertical-align: top;
+  padding: 12px 14px;
+  background: #0a0110;
+}
+
+.layout-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ---------- Гостевая книга ---------- */
+
+.guestbook-entry {
+  border: 1px dashed #552244;
+  background: #0d0114;
+  color: #cccccc;
+  padding: 6px 8px;
+  margin: 6px 0;
+  font-size: 13px;
+}
+
+.guestbook-entry .gb-name {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.guestbook-entry .gb-date {
+  color: #774a77;
+  font-size: 11px;
+  float: right;
+}
+
+.retro-input {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  background: #0d0114;
+  color: #cccccc;
+  border: 2px inset #552244;
+  padding: 3px 5px;
+  width: 100%;
+}
+
+.retro-input::placeholder {
+  color: #774a77;
+}
+
+.retro-btn {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  font-weight: bold;
+  background: #1a0512;
+  color: #ff9999;
+  border: 3px outset #552244;
+  padding: 4px 16px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 #000000;
+}
+
+.retro-btn:active {
+  border-style: inset;
+}
+
+/* ---------- Бегущая строка ---------- */
+
+.marquee-bar {
+  background: #000000;
+  color: #ff2222;
+  border-top: 2px solid #4a1a4a;
+  border-bottom: 2px solid #4a1a4a;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 3px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-shadow: 0 0 8px #8b0000;
+}
+
+.marquee-bar.secondary {
+  font-size: 12px;
+  color: #cc99ff;
+  border-top: none;
+  text-shadow: 0 0 8px #660066;
+}
+
+/* ---------- «Under construction» ---------- */
+
+.construction {
+  background: repeating-linear-gradient(45deg, #4a0000 0 14px, #000000 14px 28px);
+  padding: 4px;
+  margin: 10px 0;
+}
+
+.construction-inner {
+  background: #0d0114;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  color: #ff6666;
+}
+
+/* ---------- Демки (lab) ---------- */
+
+.demo-frame {
+  border: 3px ridge #4a1a4a;
+  background: #000000;
+  margin: 10px 0;
+}
+
+.demo-canvas {
+  display: block;
+  width: 100%;
+  height: 260px;
+}
+
+/* ---------- Всплывающее окно ---------- */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.popup-window {
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  z-index: 101;
+  pointer-events: auto;
+}
+
+/* ---------- Разное ---------- */
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #8a5a8a;
+  padding: 12px 6px 4px;
+}
+
+.footer a {
+  color: #cc6666;
+}
+
+.badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.hr-gothic {
+  border: none;
+  height: 22px;
+  background: none;
+  text-align: center;
+  line-height: 22px;
+  margin: 8px 0;
+  font-size: 14px;
+  letter-spacing: 8px;
+  color: #8b0000;
+  overflow: hidden;
+}
+
+.new-badge {
+  color: #ffffff;
+  background: #8b0000;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0 3px;
+  animation: blink-anim 0.7s steps(1) infinite;
+}
+
+.spec-table {
+  border-collapse: collapse;
+  width: 100%;
+  color: #cccccc;
+  font-size: 13px;
+}
+
+.spec-table td,
+.spec-table th {
+  border: 1px solid #4a1a4a;
+  padding: 3px 6px;
+}
+
+.spec-table th {
+  background: #1a0000;
+  color: #ff6666;
+  text-align: left;
+}
+
+.spec-table tr:nth-child(even) {
+  background: #14031a;
+}
+
+/* ---------- Визуальный мусор ---------- */
+
+/* Летучие мыши */
+.bat-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.bat {
+  position: absolute;
+  top: -30px;
+  font-size: 20px;
+  animation: bat-fall linear forwards;
+  filter: drop-shadow(0 0 4px rgba(139, 0, 0, 0.5));
+}
+
+@keyframes bat-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(340deg);
+    opacity: 0.7;
+  }
+}
+
+/* Черепа по углам экрана */
+.skull-corner {
+  position: fixed;
+  z-index: 60;
+  font-size: 34px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.8));
+  animation: skull-spin 6s linear infinite;
+  display: inline-block;
+}
+
+.skull-corner.tl {
+  top: 8px;
+  left: 8px;
+}
+.skull-corner.tr {
+  top: 8px;
+  right: 8px;
+  animation-direction: reverse;
+}
+
+@keyframes skull-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Фейковый плеер */
+.player-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 22px;
+  margin-top: 6px;
+}
+
+.player-eq .bar {
+  width: 6px;
+  background: linear-gradient(180deg, #ff2222, #660000);
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+
+@keyframes eq-bounce {
+  0%,
+  100% {
+    height: 20%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+/* Свечи */
+.candle-row {
+  text-align: center;
+  font-size: 20px;
+  margin: 6px 0;
+  letter-spacing: 6px;
+}
+
+/* Пентаграмма-разделитель вращающаяся */
+.pentagram-divider {
+  text-align: center;
+  font-size: 22px;
+  color: #cc2222;
+  margin: 8px 0;
+  text-shadow: 0 0 10px #8b0000;
+}
+
+.pentagram-divider .spin {
+  display: inline-block;
+  animation: skull-spin 8s linear infinite;
+}
+
+.cursor-star {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 14px;
+  animation: star-fade 0.9s linear forwards;
+}
+
+@keyframes star-fade {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(14px) scale(0.4);
+  }
+}
+
+/* Призрак, проплывающий по экрану */
+.ghost {
+  position: fixed;
+  z-index: 40;
+  font-size: 40px;
+  opacity: 0.35;
+  pointer-events: none;
+  animation: ghost-cross 14s linear infinite;
+  filter: blur(0.5px) drop-shadow(0 0 8px #9966cc);
+}
+
+@keyframes ghost-cross {
+  0% {
+    left: -60px;
+    top: 60%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  50% {
+    top: 30%;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    left: 110vw;
+    top: 55%;
+    opacity: 0;
+  }
+}
+
+/* Туман снизу */
+.fog {
+  position: fixed;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 30;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(102, 0, 102, 0.28),
+    transparent 70%
+  );
+  animation: fog-drift 9s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  from {
+    transform: translateX(-30px);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(30px);
+    opacity: 1;
+  }
+}
+
+.chat-box {
+  border: 2px inset #552244;
+  background: #050005;
+  color: #ff9999;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  height: 200px;
+  overflow-y: auto;
+  padding: 6px;
+  margin-bottom: 8px;
+}
+
+.chat-box .chat-nick {
+  font-weight: bold;
+}
+
+.chat-users {
+  color: #cccccc;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   КУРСОР-ЛЕТУЧАЯ МЫШЬ
+   ============================================================ */
+
+.bat-cursor,
+.bat-cursor * {
+  cursor: none !important;
+}
+
+.bat-cursor-el {
+  position: fixed;
+  top: -12px;
+  left: -10px;
+  z-index: 10000;
+  font-size: 24px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(139, 0, 0, 0.7));
+  animation: bat-flap 0.4s ease-in-out infinite;
+}
+
+@keyframes bat-flap {
+  0%,
+  100% {
+    margin-top: 0;
+    transform-origin: center;
+  }
+  50% {
+    margin-top: -3px;
+  }
+}
+
+/* ============================================================
+   НОЧНОЙ РЕЖИМ (глубокая тьма с 23:00 до 6:00)
+   ============================================================ */
+
+.deep-night .main-table {
+  filter: brightness(0.85) contrast(1.1);
+}
+
+.deep-night .fog {
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(139, 0, 0, 0.4),
+    transparent 70%
+  );
+}
+
+.deep-night .wordart {
+  text-shadow: 0 0 28px rgba(255, 0, 0, 0.9);
+}
+
+.deep-night .night-badge {
+  display: inline;
+}
+
+.night-badge {
+  display: none;
+  color: #000;
+  background: #ff2222;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0 4px;
+  animation: blink-anim 0.6s steps(1) infinite;
+}
+
+/* ============================================================
+   ТЕМА Y2K: хром, перламутр, аэрозольный блеск 2000-го
+   ============================================================ */
+
+.theme-y2k {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23e8f4ff'/%3E%3Cstop offset='0.5' stop-color='%23ffd6f2'/%3E%3Cstop offset='1' stop-color='%23d6fff2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' fill='url(%23g)'/%3E%3Cpath d='M30 22 h6 v10 h10 v6 h-10 v26 h-6 v-26 h-10 v-6 h10 z' fill='white' opacity='0.55'/%3E%3Cpath d='M92 88 h5 v8 h8 v5 h-8 v19 h-5 v-19 h-8 v-5 h8 z' fill='white' opacity='0.45'/%3E%3Ccircle cx='100' cy='28' r='1.5' fill='%23ffb3e6'/%3E%3Ccircle cx='60' cy='60' r='1.5' fill='%23b3e6ff'/%3E%3C/svg%3E") !important;
+}
+
+.theme-y2k .main-table {
+  border: 4px ridge #ffffff;
+  background: linear-gradient(160deg, #f0f6ff, #ffe6f7 55%, #e6fff9);
+  animation: none;
+  box-shadow: 0 0 30px rgba(255, 150, 220, 0.6), 8px 8px 0 rgba(120, 120, 160, 0.4);
+}
+
+.theme-y2k .wordart {
+  background: linear-gradient(180deg, #ffffff, #b8c8dd 45%, #6a7b95 60%, #d8e8ff);
+  -webkit-text-stroke: 2px #3a3a55;
+  text-shadow: 0 0 14px rgba(255, 130, 210, 0.7);
+}
+
+.theme-y2k .drip {
+  background: linear-gradient(180deg, #ff9ad5, #c0c8ff);
+}
+
+.theme-y2k .content-cell {
+  background: linear-gradient(180deg, #fbf4ff, #eefaff);
+}
+
+.theme-y2k .sidebar {
+  background: linear-gradient(180deg, #eef2ff, #ffe9f8);
+  border-right: 3px ridge #ffffff;
+}
+
+.theme-y2k .bevel-box {
+  border: 3px ridge #c8d4ff !important;
+  background: linear-gradient(180deg, #ffffff, #f2ecff) !important;
+  box-shadow: 0 0 10px rgba(160, 200, 255, 0.5) !important;
+}
+
+.theme-y2k .bevel-box h3 {
+  color: #7a4ac8;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+
+.theme-y2k .win {
+  border: 2px outset #d8e4ff;
+  background: #f2f6ff;
+}
+
+.theme-y2k .win-titlebar {
+  background: linear-gradient(90deg, #4a90d9, #a8d4ff 50%, #4a90d9);
+  color: #ffffff;
+}
+
+.theme-y2k .marquee-bar {
+  background: linear-gradient(90deg, #ffe6f7, #e6f7ff, #fff3d6);
+  color: #5a4a8a;
+  border-top: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  text-shadow: none;
+}
+
+.theme-y2k .marquee-bar.secondary {
+  color: #8a4a6a;
+}
+
+.theme-y2k .nav-link {
+  color: #4a5a9a !important;
+  background: linear-gradient(180deg, #ffffff, #dfe8ff);
+  border: 2px outset #c8d4ff;
+}
+
+.theme-y2k .nav-link:hover {
+  background: #fff2fb;
+  color: #2a2a4a !important;
+}
+
+.theme-y2k .nav-link.active {
+  background: linear-gradient(180deg, #ffd6f2, #ffb3e0);
+  color: #3a2a4a !important;
+}
+
+.theme-y2k .hit-counter {
+  background: #ffffff;
+  border: 3px inset #c8d4ff;
+}
+
+.theme-y2k .hit-counter .digit {
+  color: #4a5a9a;
+  background: #f2f6ff;
+  border: 1px solid #b8c8e8;
+  text-shadow: none;
+}
+
+.theme-y2k .spec-table th {
+  background: #dfe8ff;
+  color: #4a5a9a;
+}
+
+.theme-y2k .spec-table td {
+  color: #3a3a55;
+}
+
+.theme-y2k .spec-table tr:nth-child(even) {
+  background: #f4f0ff;
+}
+
+.theme-y2k .retro-input {
+  background: #ffffff;
+  color: #3a3a55;
+  border: 2px inset #c8d4ff;
+}
+
+.theme-y2k .retro-btn {
+  background: linear-gradient(180deg, #ffffff, #dfe8ff);
+  color: #4a5a9a;
+  border: 3px outset #c8d4ff;
+  text-shadow: none;
+}
+
+.theme-y2k .retro-btn:active {
+  border-style: inset;
+}
+
+.theme-y2k .construction {
+  background: repeating-linear-gradient(45deg, #ffd6f2 0 14px, #e6f7ff 14px 28px);
+}
+
+.theme-y2k .construction-inner {
+  background: #ffffff;
+  color: #7a4ac8;
+}
+
+.theme-y2k .footer {
+  color: #8a7aa8;
+}
+
+.theme-y2k .footer a {
+  color: #4a90d9;
+}
+
+.theme-y2k .guestbook-entry {
+  background: #f8f4ff;
+  color: #4a4a66;
+  border: 1px dashed #c8b8e8;
+}
+
+.theme-y2k .guestbook-entry .gb-name {
+  color: #b34a8a;
+}
+
+.theme-y2k .guestbook-entry .gb-date {
+  color: #a8a8c0;
+}
+
+.theme-y2k .chat-box {
+  background: #ffffff;
+  color: #5a4a8a;
+  border: 2px inset #c8d4ff;
+}
+
+.theme-y2k .bat-cursor-el,
+.theme-y2k .skull-corner {
+  filter: drop-shadow(0 0 6px rgba(255, 130, 210, 0.8));
+}
+
+.theme-y2k .cross-item {
+  opacity: 0.25;
+}
+
+.theme-y2k .theme-note {
+  display: inline;
+}
+
+.theme-note {
+  display: none;
+}
+
+/* Переключатель эпох */
+.theme-switch {
+  text-align: center;
+  margin: 8px 0;
+}
+
+/* Радужное свечение вокруг всей таблицы — переливается как обложка
+   альбома «избранное» в плеере альтушки */
+.main-table {
+  animation: chaos-glow 7s linear infinite;
+}
+
+@keyframes chaos-glow {
+  0% {
+    box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(255, 46, 166, 0.35);
+  }
+  20% {
+    box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(0, 255, 170, 0.3);
+  }
+  40% {
+    box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(0, 170, 255, 0.35);
+  }
+  60% {
+    box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(255, 230, 0, 0.3);
+  }
+  80% {
+    box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(170, 0, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 24px rgba(139, 0, 0, 0.55), 8px 8px 0 rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(255, 46, 166, 0.35);
+  }
+}
+
+/* Каждая врезка со своим неоновым бордером — вырвиглазно и с достоинством */
+.bevel-box:nth-of-type(3n + 1) {
+  border: 3px ridge #ff2ea6;
+  box-shadow: 0 0 12px rgba(255, 46, 166, 0.4);
+}
+
+.bevel-box:nth-of-type(3n + 2) {
+  border: 3px ridge #00ffcc;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.35);
+}
+
+.bevel-box:nth-of-type(3n) {
+  border: 3px ridge #ccff00;
+  box-shadow: 0 0 12px rgba(204, 255, 0, 0.3);
+}
+
+/* Кислотное мигание (для «ТРУ 1337 КОДЕР» и прочих надписей) */
+.acid-blink {
+  animation: acid-blink-anim 0.8s steps(1) infinite;
+  font-weight: bold;
+}
+
+@keyframes acid-blink-anim {
+  0% {
+    color: #ff2ea6;
+  }
+  25% {
+    color: #00ffcc;
+    visibility: hidden;
+  }
+  50% {
+    color: #ccff00;
+  }
+  75% {
+    color: #ff2222;
+    visibility: hidden;
+  }
+}
+
+/* Кислотный градиентный текст (подзаголовки) */
+.acid-text {
+  background: linear-gradient(
+    90deg,
+    #ff2ea6,
+    #ff8800,
+    #ccff00,
+    #00ffcc,
+    #aa00ff,
+    #ff2ea6
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-slide 4s linear infinite;
+  font-weight: bold;
+}
+
+@keyframes rainbow-slide {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+/* Шашечки эмо-2004 по краям контента */
+.checker-strip {
+  height: 12px;
+  background: repeating-conic-gradient(
+    #ff2ea6 0% 25%,
+    #000000 0% 50%
+  );
+  background-size: 16px 16px;
+}
+
+/* Цепи под шапкой */
+.chain-row {
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 4px;
+  margin: 2px 0 8px;
+  animation: chain-swing 3s ease-in-out infinite;
+}
+
+@keyframes chain-swing {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+/* Розовые сердечки-разделитель (vibe, всё честно) */
+.hearts-divider {
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 6px;
+  margin: 6px 0;
+}
+
+.hearts-divider span {
+  display: inline-block;
+  animation: heart-beat 1.2s ease-in-out infinite;
+}
+
+.hearts-divider span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.hearts-divider span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.hearts-divider span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.hearts-divider span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+@keyframes heart-beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+}
+
+/* Эквалайзер и плеер уже есть; добавляем кислотную рамку демкам */
+.demo-frame {
+  box-shadow: 0 0 18px rgba(0, 255, 204, 0.35);
+}

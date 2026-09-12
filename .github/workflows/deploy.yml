@@ -1,0 +1,40 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Upload site and API to VPS
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          install -m 600 /dev/null ~/deploy_key
+          echo "$SSH_KEY" > ~/deploy_key
+          SSH="ssh -i ~/deploy_key -o StrictHostKeyChecking=accept-new root@31.77.149.158"
+          $SSH "mkdir -p /var/www/marselevichk /opt/marselevichk-api"
+          rsync -az --delete -e "ssh -i ~/deploy_key" dist/ root@31.77.149.158:/var/www/marselevichk/
+          rsync -az -e "ssh -i ~/deploy_key" server/ root@31.77.149.158:/opt/marselevichk-api/
+          $SSH "chmod -R a+rX /var/www/marselevichk && systemctl restart marselevichk-api && systemctl is-active marselevichk-api"
+
+      - name: Smoke check
+        run: |
+          sleep 2
+          curl -sf -X POST http://31.77.149.158/api/visit > /dev/null
+          curl -sf http://31.77.149.158/ | grep -q marselevichk
+          echo "deploy ok"

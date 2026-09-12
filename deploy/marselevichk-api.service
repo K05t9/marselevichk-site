@@ -1,0 +1,16 @@
+[Unit]
+Description=marselevichk.ru mini API (counter, guestbook, online)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/marselevichk-api
+ExecStart=/usr/bin/node /opt/marselevichk-api/server.cjs
+Restart=always
+RestartSec=3
+User=root
+Environment=PORT=3001
+Environment=DATA_DIR=/opt/marselevichk-api/data
+
+[Install]
+WantedBy=multi-user.target
